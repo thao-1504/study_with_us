@@ -1,16 +1,14 @@
 from flask import Flask, render_template, redirect, url_for, request, session, send_from_directory
 import sqlite3
 import os
-from werkzeug.utils import secure_filename
 
-app = Flask(__name__)
-app.secret_key = "study_secret_key"
-
-UPLOAD_FOLDER = "uploads"
+UPLOAD_FOLDER = "static/uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
-if not os.path.exists("uploads"):
-    os.makedirs("uploads")
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)
+
+file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
 
 # ================= DATABASE =================
 def init_db():
