@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="card">
+<h2>Đóng góp tài liệu</h2>
+<form method="POST" enctype="multipart/form-data">
+<input name="title" required placeholder="Tên tài liệu">
+<input type="file" name="file" required>
+<button>Đăng</button>
+</form>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Study With Us</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+<nav>
+    <a href="/">Trang chủ</a>
+    <a href="/documents/onthi10">Ôn thi vào 10</a>
+    <a href="/documents/hsg6">HSG Toán 6</a>
+    <a href="/documents/hsg7">HSG Toán 7</a>
+    <a href="/documents/hsg8">HSG Toán 8</a>
+    <a href="/documents/hsg9">HSG Toán 9</a>
+    <a href="/documents/donggop">Tài liệu đóng góp</a>
+
+    {% if session.get("role") == "admin" %}
+        <a href="/upload_admin">Upload</a>
+        <a href="/logout">Đăng xuất</a>
+    {% elif session.get("role") == "user" %}
+        <a href="/upload_user">Đóng góp</a>
+        <a href="/logout">Đăng xuất</a>
+    {% else %}
+        <a href="/login">Đăng nhập</a>
+        <a href="/register">Đăng ký</a>
+    {% endif %}
+</nav>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+<script>
+document.querySelectorAll("a").forEach(link=>{
+    if(link.hostname === window.location.hostname){
+        link.addEventListener("click", function(e){
+            e.preventDefault();
+            document.querySelector(".container").style.opacity=0;
+            document.querySelector(".container").style.transform="translateY(20px)";
+            setTimeout(()=>{
+                window.location=this.href;
+            },300);
+        });
+    }
+});
+</script>
+</body>
+</html>

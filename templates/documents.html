@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Danh sách tài liệu</h2>
+
+{% for doc in docs %}
+<div class="card">
+<h3>{{ doc[1] }}</h3>
+<p>Người đăng: {{ doc[4] }}</p>
+<a href="/download/{{ doc[2] }}"><button>Tải xuống</button></a>
+</div>
+{% endfor %}
+
+{% endblock %}
